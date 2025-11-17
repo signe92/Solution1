@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+/*using Microsoft.AspNetCore.Mvc;
 
 namespace GenbrugsmarkedAPI.Controllers;
 
@@ -30,3 +30,5 @@ public class WeatherForecastController : ControllerBase
             .ToArray();
     }
 }
+
+*/

@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genbrugsmarked", "Genbrugsmarked\Genbrugsmarked.csproj", "{32FE9737-1064-4D29-A596-5F0A985E289E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenbrugsmarkedAPI", "GenbrugsmarkedAPI\GenbrugsmarkedAPI.csproj", "{3D71A876-7F53-4ADA-BA1B-81F4CB75E239}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{32FE9737-1064-4D29-A596-5F0A985E289E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32FE9737-1064-4D29-A596-5F0A985E289E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32FE9737-1064-4D29-A596-5F0A985E289E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D71A876-7F53-4ADA-BA1B-81F4CB75E239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D71A876-7F53-4ADA-BA1B-81F4CB75E239}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D71A876-7F53-4ADA-BA1B-81F4CB75E239}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D71A876-7F53-4ADA-BA1B-81F4CB75E239}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

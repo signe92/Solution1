@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genbrugsmarked", "Genbrugsm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenbrugsmarkedAPI", "GenbrugsmarkedAPI\GenbrugsmarkedAPI.csproj", "{3D71A876-7F53-4ADA-BA1B-81F4CB75E239}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{CD34055F-71BB-4960-AD87-BE9D8162BA7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{3D71A876-7F53-4ADA-BA1B-81F4CB75E239}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D71A876-7F53-4ADA-BA1B-81F4CB75E239}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D71A876-7F53-4ADA-BA1B-81F4CB75E239}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD34055F-71BB-4960-AD87-BE9D8162BA7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD34055F-71BB-4960-AD87-BE9D8162BA7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD34055F-71BB-4960-AD87-BE9D8162BA7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD34055F-71BB-4960-AD87-BE9D8162BA7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

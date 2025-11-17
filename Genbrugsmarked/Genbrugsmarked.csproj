@@ -15,4 +15,9 @@
       <ProjectReference Include="..\Core\Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <AdditionalFiles Include="Komponenter\MineKøbKomponent.razor" />
+      <AdditionalFiles Include="Komponenter\OpretAnnonceKomponent.razor" />
+    </ItemGroup>
+
 </Project>

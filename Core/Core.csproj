@@ -15,4 +15,9 @@
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.8"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Komponenter\MineKøbKomponent.razor" />
+      <UpToDateCheckInput Remove="Komponenter\OpretAnnonceKomponent.razor" />
+    </ItemGroup>
+
 </Project>

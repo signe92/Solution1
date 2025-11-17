@@ -1,9 +1,47 @@
 @page "/opretannonce"
+@using Core.Klasser
+@inject NavigationManager navmanager 
 
 <PageTitle>OpretAnnonce</PageTitle>
 
 <h3>OpretAnnonce</h3>
 
-@code {
+
+<EditForm Model="nyAnnonce" class="row p-3">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="Titel">Titel</label>
+            <InputText id="Titel" @bind-Value="nyAnnonce.Titel" class="form-control" />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="Pris">Pris</label>
+            <InputNumber id="Pris" @bind-Value="nyAnnonce.Pris" class="form-control" />
+        </div>
+    </div>
     
-}
+    <div class="col-md-6">
+        <label for="OprettetDato">Oprettet</label>
+        <InputDate id="OprettetDato" @bind-Value="nyAnnonce.OprettetDato" class="form-control"></InputDate>
+    </div>
+    
+    <div class="col-md-12 mb-3">
+        <label for="Beskrivelse">Beskrivelse</label>
+        <InputText id="Beskrivelse" @bind-Value="nyAnnonce.Beskrivelse" class="form-control"></InputText>
+    </div>
+</EditForm>
+<button class="btn btn-primary btn-outline-info" @onclick="HandleSubmit">Opret ny annonce</button>
+
+@code {
+
+    private Annonce nyAnnonce = new();
+
+    private async Task HandleSubmit()
+    {
+        
+        navmanager.NavigateTo("/");
+    }
+
+
+} 

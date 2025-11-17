@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwapShop", "SwapShop\SwapShop.csproj", "{32FE9737-1064-4D29-A596-5F0A985E289E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genbrugsmarked", "Genbrugsmarked\Genbrugsmarked.csproj", "{32FE9737-1064-4D29-A596-5F0A985E289E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

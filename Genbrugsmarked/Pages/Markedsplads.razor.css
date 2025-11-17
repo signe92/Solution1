@@ -1,0 +1,42 @@
+body {
+    background-color: #e6e6ef;
+    font-family: "Times New Roman";
+}
+
+.market-header {
+    text-align: center;
+    margin: 2rem 0;
+    font-size: 2.5rem;
+    color: #041e3a;
+}
+
+.market-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.market-card {
+    background-color: #041e3a;
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    padding: 1rem;
+    transition: transform 0.2s ease-in-out;
+}
+
+.market-card:hover {
+    transform: scale(1.05);
+}
+
+.market-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.market-card p {
+    font-size: 1rem;
+    margin: 0;
+}

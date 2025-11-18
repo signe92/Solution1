@@ -1,5 +1,6 @@
 @page "/annoncekøb/{id:int}"
 @using Core.Klasser
+@inject IAnnonceService annonceService
 
 <h3>@annonce?.Titel</h3>
 
@@ -30,7 +31,7 @@ else
             new Annonce { AnnonceID = 1, Titel = "Bluse", Beskrivelse = "God stand, kun brugt få gange", Pris = 500, Status = false, OprettetDato = DateTime.Now },
             new Annonce { AnnonceID = 2, Titel = "Trøje", Beskrivelse = "Fin stand, brugt en del, men ingen brugstegn", Pris = 200, Status = false, OprettetDato = DateTime.Now }
         };
-        annonce = alleAnnoncer.FirstOrDefault(a => a.AnnonceID == id);
+        annonce = annonceService.alleAnnoncer.FirstOrDefault(a => a.AnnonceID == id);
     }
 
     private void KøbAnnonce()

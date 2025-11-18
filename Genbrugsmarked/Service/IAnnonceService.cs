@@ -1,6 +1,7 @@
 ﻿namespace Core.Klasser;
 
-public class IAnnonceService
+public interface IAnnonceService
 {
-    
+ Task NyAnnonce(Annonce annonce);
+ List<Annonce> alleAnnoncer { get; }
 }

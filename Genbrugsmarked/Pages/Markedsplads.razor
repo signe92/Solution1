@@ -1,20 +1,28 @@
 ﻿@page "/"
 @using Core.Klasser
 @inject NavigationManager NavManager
+@inject IAnnonceService annonceService
 
 <PageTitle>Markedsplads</PageTitle>
 
 <h1 class="market-header">Markedsplads</h1>
+@if (!annonceService.alleAnnoncer.Any())
+{
+   <p>ingen annoncer endnu</p>
+}
 
-<div class="market-grid">
-   @foreach (var annonce in annoncer)
-   {
-      <div class="market-card" @onclick="() => GåTilDetaljer(annonce.AnnonceID)">
-         <h4>@annonce.Titel</h4>
-         <p>@annonce.Pris</p>
-      </div>
-   }
-</div>
+else
+{
+   <div class="market-grid">
+      @foreach (var annonce in annonceService.alleAnnoncer)
+      {
+         <div class="market-card" @onclick="() => GåTilDetaljer(annonce.AnnonceID)">
+            <h4>@annonce.Titel</h4>
+            <p>@annonce.Pris</p>
+         </div>
+      }
+   </div>
+}
 
 @code {
 

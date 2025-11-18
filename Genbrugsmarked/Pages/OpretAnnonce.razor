@@ -1,6 +1,8 @@
 @page "/opretannonce"
 @using Core.Klasser
 @inject NavigationManager navmanager 
+@inject IAnnonceService annonceService
+
 
 <PageTitle>OpretAnnonce</PageTitle>
 
@@ -34,7 +36,8 @@
     
     private async Task HandleSubmit()
     {
-        
+        nyAnnonce.OprettetDato = DateTime.Now;
+        await annonceService.NyAnnonce(nyAnnonce);
         navmanager.NavigateTo("/");
     }
 

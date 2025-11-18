@@ -19,11 +19,17 @@
     max-width: 420px;
     width: 315px;
     margin: 5rem auto;
-    background-color: #BBBBBB;
+    background-color: rgba(118, 183, 134, 0.56);
     padding: 2.5rem 2rem;
     border-radius: 14px;
-    border: 1px solid #FFFFFF;
+    border: 1px solid rgba(118, 183, 134, 0.15);
+}
 
+.form-floating-group {
+    padding: 7px;
+}
+.login-btn{
+    padding: 7px;
 }
 
 
@@ -33,9 +39,6 @@ h3 {
 }
 
 
-
-
-/* Fejlbesked */
 .error-message {
     background-color: #FFF4F4;
     border-left: 4px solid #E74C3C;
@@ -50,19 +53,19 @@ h3 {
     transition: all 0.3s ease;
 }
 
-/* Hvis ingen fejl = skjul */
+
 .error-message:empty {
     display: none;
 }
 
-/* Fejlikon */
+
 .error-icon {
     margin-right: 0.75rem;
     font-size: 1rem;
     color: #E74C3C;
 }
 
-/* Fejltekst */
+
 .error-text {
     flex: 1;
 }

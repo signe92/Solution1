@@ -9,9 +9,9 @@
 
 
 
-<PageTitle>LogInPage</PageTitle>
+<PageTitle>Log Ind</PageTitle>
 
-<h3>LogInPage</h3>
+<h3>Log Ind</h3>
 
 
 <div class="login-page-background">
@@ -25,7 +25,6 @@
 
             <div class="form-floating-group">
                 <InputText id="un" class="form-control" @bind-Value="bruger.Email" placeholder="Email"/>
-                <label for="un">Email</label>
             </div>
 
             <div class="form-floating-group">
@@ -34,20 +33,18 @@
                            class="form-control"
                            @bind-Value="bruger.Password"
                            placeholder="Password"/>
-                <label for="pwd">Adgangskode</label>
                 <i class="bi bi-eye" @onclick="ToggleAdgangskodeVisibility">
-                    </i>
+                </i>
             </div>
 
             <div style="text-align: center">
-                <button type="submit" class="btn btn-primary">Log ind</button>
+                <button type="submit" class="login-btn">Log ind</button>
             </div>
         </EditForm>
 
         @if (!string.IsNullOrEmpty(errorText))
         {
             <div class="error-message">
-                <span class="error-icon">⚠️</span>
                 <span class="error-text">@errorText</span>
             </div>
         }

@@ -21,11 +21,6 @@
         </div>
     </div>
     
-    <div class="col-md-6">
-        <label for="OprettetDato">Oprettet</label>
-        <InputDate id="OprettetDato" @bind-Value="nyAnnonce.OprettetDato" class="form-control"></InputDate>
-    </div>
-    
     <div class="col-md-12 mb-3">
         <label for="Beskrivelse">Beskrivelse</label>
         <InputText id="Beskrivelse" @bind-Value="nyAnnonce.Beskrivelse" class="form-control"></InputText>
@@ -36,7 +31,7 @@
 @code {
 
     private Annonce nyAnnonce = new();
-
+    
     private async Task HandleSubmit()
     {
         

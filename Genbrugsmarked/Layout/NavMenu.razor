@@ -1,46 +1,21 @@
-﻿
-<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">Genbrugsmarked</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</div>
+﻿@inject NavigationManager NavManager
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="nav flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="opretannonce">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> OpretAnnonce
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="minekøb">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> MineKøb
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="loginpage">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> LogInPage
-            </NavLink>
-        </div>
-    </nav>
-</div>
+<nav class="top-nav">
+    <div class="brand">
+        Genbrugsmarked
+    </div>
+  
+    <div class="nav-buttons">
+        <button class="nav-btn" @onclick='() => NavigateTo("/")'>Markedsplads</button>
+        <button class="nav-btn" @onclick='() => NavigateTo("/opretannonce")'>OpretAnnonce</button>
+        <button class="nav-btn" @onclick='() => NavigateTo("/minekøb")'>MineKøb</button>
+        <button class="nav-btn" @onclick='() => NavigateTo("/loginpage")'>LogInd</button>
+    </div>
+</nav>
 
 @code {
-    private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
+    private void NavigateTo(string url)
     {
-        collapseNavMenu = !collapseNavMenu;
+        NavManager.NavigateTo(url);
     }
-
 }

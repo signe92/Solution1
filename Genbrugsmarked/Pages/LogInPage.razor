@@ -1,9 +1,86 @@
 @page "/loginpage"
+@using Blazored.LocalStorage
+@using Genbrugsmarked.Service
+@using Genbrugsmarked.Logic
 
-<PageTitle>LogInPage</PageTitle>
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
+@inject BrugerRepo BrugerRepo
+@inject NavigationManager navManager
 
-<h3>LogInPage</h3>
+
+
+<PageTitle>Log Ind</PageTitle>
+
+<h3>Log Ind</h3>
+
+
+<div class="login-page-background">
+    <div class="login-container">
+        
+        <h3>Log ind</h3>
+
+        <!-- Formular til login-->
+        <EditForm Model="@bruger" OnValidSubmit="OnClickLogin">
+            <DataAnnotationsValidator/>
+
+            <div class="form-floating-group">
+                <InputText id="un" class="form-control" @bind-Value="bruger.Email" placeholder="Email"/>
+            </div>
+
+            <div class="form-floating-group">
+                <InputText id="pwd"
+                           type="@PasswordType"
+                           class="form-control"
+                           @bind-Value="bruger.Password"
+                           placeholder="Password"/>
+                <i class="bi bi-eye" @onclick="ToggleAdgangskodeVisibility">
+                </i>
+            </div>
+
+            <div style="text-align: center">
+                <button type="submit" class="login-btn">Log ind</button>
+            </div>
+        </EditForm>
+
+        @if (!string.IsNullOrEmpty(errorText))
+        {
+            <div class="error-message">
+                <span class="error-text">@errorText</span>
+            </div>
+        }
+    </div>
+</div>
+
+
 
 @code {
+    Bruger bruger = new();
     
+    string errorText = "";
+   
+    bool visPassword = false;
+
+    string PasswordType => visPassword ? "text" : "password";
+    
+    void ToggleAdgangskodeVisibility()
+    {
+        visPassword = !visPassword;
+    }
+
+    private async Task OnClickLogin()
+    {
+        Bruger? brugerObject = BrugerRepo.ValidLogin(bruger.Email, bruger.Password);
+
+        if (brugerObject == null)
+        {
+            errorText = "Forkert email eller adgangskode, prøv igen";
+        }
+        else
+        {
+            await localStorage.SetItemAsync("Bruger", brugerObject);
+            navManager.NavigateTo("/", forceLoad: true);
+        }
+    }
+    
+
 }

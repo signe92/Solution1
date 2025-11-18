@@ -1,9 +1,71 @@
 @page "/minekøb"
+@using Core.Klasser
+@inject HttpClient Http
 
-<PageTitle>MineKøb</PageTitle>
+<h3>Mine køb</h3>
 
-<h3>MineKøb</h3>
+@if (isLoading)
+{
+    <p>Indlæser dine køb...</p>
+}
+else if (!indkøb.Any())
+{
+    <p>Du har ikke købt noget endnu.</p>
+}
+else
+{
+    <h4>Anmodninger der afventer svar:</h4>
+
+    @foreach (var køb in indkøb.Where(k => k.Status == false))   
+    {
+        var annonce = FindAnnonce(køb.AnnonceID);
+
+        <div class="purchase-box">
+            <h5>@annonce?.Titel</h5>
+            <p><strong>Pris:</strong> @annonce?.Pris kr</p>
+            <p><strong>Anmodet d.:</strong> @køb.OprettetDato.ToString("dd-MM-yyyy HH:mm")</p>
+            <p style="color: cornflowerblue;">Status: Venter på sælger...</p>
+        </div>
+    }
+
+    <h4 style="margin-top:20px;">Gennemførte køb:</h4>
+
+    @foreach (var køb in indkøb.Where(k => k.Status == true))    
+    {
+        var annonce = FindAnnonce(køb.AnnonceID);
+
+        <div class="purchase-box">
+            <h5>@annonce?.Titel</h5>
+            <p><strong>Pris:</strong> @annonce?.Pris kr</p>
+            <p><strong>Købt d.:</strong> @køb.OprettetDato.ToString("dd-MM-yyyy HH:mm")</p>
+            <p style="color: darkblue;">Status: Købt ✔</p>
+        </div>
+    }
+}
 
 @code {
-  
+    private bool isLoading = true;
+
+    private List<AnmodningOmKøb> indkøb = new();
+    private List<Annonce> annoncer = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+        isLoading = false;
+    }
+
+    private async Task LoadData()
+    {
+        indkøb = await Http.GetFromJsonAsync<List<AnmodningOmKøb>>(
+                     "http://localhost:5159/api/indkøb/user/1")
+                 ?? new List<AnmodningOmKøb>();
+
+        annoncer = await Http.GetFromJsonAsync<List<Annonce>>(
+                       "http://localhost:5159/api/annoncer")
+                   ?? new List<Annonce>();
+    }
+
+    private Annonce? FindAnnonce(int annonceId) =>
+        annoncer.FirstOrDefault(a => a.AnnonceID == annonceId);
 }

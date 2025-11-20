@@ -1,7 +1,12 @@
-﻿namespace Core.Klasser;
+﻿using Core.Klasser;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-public interface IAnnonceService
+namespace Genbrugsmarked.Service
 {
- Task NyAnnonce(Annonce annonce);
- List<Annonce> alleAnnoncer { get; }
+    public interface IAnnonceService
+    {
+        Task<List<Annonce>> alleAnnoncer();
+        Task NyAnnonce(Annonce annonce);
+    }
 }

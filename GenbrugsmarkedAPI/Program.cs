@@ -1,7 +1,9 @@
+using GenbrugsmarkedAPI.Repositories;
+using GenbrugsmarkedAPI;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddScoped<IAnnoncerRepository, AnnoncerRepositoryMongoDB>();
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddCors(options =>
@@ -9,7 +11,9 @@ builder.Services.AddCors(options =>
     options.AddPolicy("policy",
         policy =>
         {
-            policy.AllowAnyOrigin();
+            policy.WithOrigins("http://localhost:5159")
+                .AllowAnyMethod()
+                .AllowAnyHeader();
         });
 });
 

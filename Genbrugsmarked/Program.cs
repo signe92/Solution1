@@ -15,7 +15,7 @@ builder.Services.AddScoped<BrugerRepo>();
 
 // brug af local storage
 builder.Services.AddBlazoredLocalStorage();
-builder.Services.AddSingleton<IAnnonceService, AnnonceService>();
+builder.Services.AddScoped<IAnnonceService, AnnonceService>();
 
 
 

@@ -1,0 +1,42 @@
+﻿@page "/"
+@using Core.Klasser
+@inject NavigationManager NavManager
+@using Genbrugsmarked.Service
+@inject IAnnonceService annonceService
+
+<PageTitle>Markedsplads</PageTitle>
+
+<h1 class="market-header">Markedsplads</h1>
+@if (!annonceService.alleAnnoncer.Any())
+{
+   <p>ingen annoncer endnu</p>
+}
+
+else
+{
+   <div class="market-grid">
+      @foreach (var annonce in annonceService.alleAnnoncer)
+      {
+         <div class="market-card" @onclick="() => GåTilDetaljer(annonce.AnnonceID)">
+            <h4>@annonce.Titel</h4>
+            <p>@annonce.Pris</p>
+         </div>
+      }
+   </div>
+}
+
+@code {
+
+   private List<Annonce> annoncer = new()
+   {
+      new Annonce { AnnonceID = 1, Titel = "Bluse", Beskrivelse = "God stand, kun brugt få gange", Pris = 500, Status = false, OprettetDato = DateTime.Now },
+      new Annonce { AnnonceID = 2, Titel = "Trøje", Beskrivelse = "Fin stand, brugt en del, men ingen brugstegn", Pris = 200, Status = false, OprettetDato = DateTime.Now}
+   };
+
+   private void GåTilDetaljer(int id)
+   {
+      NavManager.NavigateTo($"/annoncekøb/{id}");
+   }
+
+}
+

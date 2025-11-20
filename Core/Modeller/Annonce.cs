@@ -2,6 +2,8 @@
 
 public class Annonce
 {
+    
+    public int _id { get; set; }
     public int AnnonceID { get; set; }
     public string Titel  { get; set; }
     public string Beskrivelse { get; set; }

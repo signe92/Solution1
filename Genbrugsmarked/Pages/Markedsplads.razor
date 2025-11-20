@@ -7,15 +7,15 @@
 <PageTitle>Markedsplads</PageTitle>
 
 <h1 class="market-header">Markedsplads</h1>
-@if (!annonceService.alleAnnoncer.Any())
+@if (annoncer == null)
 {
-   <p>ingen annoncer endnu</p>
+   <p>ingen annoncer endnu</p>  
 }
 
 else
 {
    <div class="market-grid">
-      @foreach (var annonce in annonceService.alleAnnoncer)
+      @foreach (var annonce in annoncer)
       {
          <div class="market-card" @onclick="() => GåTilDetaljer(annonce.AnnonceID)">
             <h4>@annonce.Titel</h4>
@@ -40,3 +40,4 @@ else
 
 }
 
+   

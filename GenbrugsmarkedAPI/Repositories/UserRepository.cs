@@ -41,12 +41,12 @@ public class UserRepository : IUserRepository
         return userCollection.Find(u => u.UserID == id).FirstOrDefault();
     }
     
-    public async Task<bool> Login(string email, string password)
+    public async Task<User?> Login(string email, string password)
     {
         var user = await userCollection.Find(u => u.Email == email).FirstOrDefaultAsync();
-        if (user == null) return false;
+        if (user == null) return null;
 
-        return password == user.Password;
+        return password == user.Password ? user : null;
     }
     
 }

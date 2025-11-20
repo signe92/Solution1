@@ -12,7 +12,7 @@ namespace GenbrugsmarkedAPI.Repositories
         
         User? GetUserById(int id);
 
-        public Task<bool> Login(string email, string password);
+        Task<User?> Login(string email, string password);
 
     }
 }

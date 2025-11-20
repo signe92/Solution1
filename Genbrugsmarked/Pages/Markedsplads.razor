@@ -27,11 +27,19 @@ else
 
 @code {
 
-   private List<Annonce> annoncer = new()
+
+   private List<Annonce> annoncer;
+
+   protected override async Task OnInitializedAsync()
+   {
+      annoncer = await annonceService.alleAnnoncer();
+      Console.WriteLine("Success");
+   }
+   /*private List<Annonce> annoncer = new()
    {
       new Annonce { AnnonceID = 1, Titel = "Bluse", Beskrivelse = "God stand, kun brugt få gange", Pris = 500, Status = false, OprettetDato = DateTime.Now },
       new Annonce { AnnonceID = 2, Titel = "Trøje", Beskrivelse = "Fin stand, brugt en del, men ingen brugstegn", Pris = 200, Status = false, OprettetDato = DateTime.Now}
-   };
+   }; */
 
    private void GåTilDetaljer(int id)
    {

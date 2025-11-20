@@ -1,21 +1,56 @@
-﻿@inject NavigationManager NavManager
+﻿@using Genbrugsmarked.Service
+@inject NavigationManager NavManager
+@inject IUserSessionService UserSession
+@implements IDisposable
 
 <nav class="top-nav">
     <div class="brand">
         Genbrugsmarked
     </div>
-  
+
     <div class="nav-buttons">
         <button class="nav-btn" @onclick='() => NavigateTo("/")'>Markedsplads</button>
         <button class="nav-btn" @onclick='() => NavigateTo("/opretannonce")'>OpretAnnonce</button>
         <button class="nav-btn" @onclick='() => NavigateTo("/minekøb")'>MineKøb</button>
-        <button class="nav-btn" @onclick='() => NavigateTo("/loginpage")'>LogInd</button>
+        @if (UserSession.CurrentUser is null)
+        {
+            <button class="nav-btn" @onclick='() => NavigateTo("/loginpage")'>Log ind</button>
+        }
+        else
+        {
+            <div class="user-info">
+                <span class="user-name">@UserSession.CurrentUser.Navn</span>
+                <button class="nav-btn" @onclick="Logout">Log ud</button>
+            </div>
+        }
     </div>
 </nav>
 
 @code {
+    protected override async Task OnInitializedAsync()
+    {
+        await UserSession.InitializeAsync();
+        UserSession.OnChange += HandleStateChanged;
+    }
+
+    private void HandleStateChanged()
+    {
+        InvokeAsync(StateHasChanged);
+    }
+
     private void NavigateTo(string url)
     {
         NavManager.NavigateTo(url);
+    }
+
+    private async Task Logout()
+    {
+        await UserSession.LogoutAsync();
+        NavManager.NavigateTo("/loginpage", forceLoad: true);
+    }
+
+    public void Dispose()
+    {
+        UserSession.OnChange -= HandleStateChanged;
     }
 }

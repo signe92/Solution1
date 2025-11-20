@@ -1,6 +1,8 @@
+using Core.Modeller;
+
 namespace Genbrugsmarked.Service;
 
-public class ILoginService
+public interface ILoginService
 {
-    
+    Task<User?> Login(UserLogin login);
 }

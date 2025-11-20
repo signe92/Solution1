@@ -1,29 +1,81 @@
 @page "/loginpage"
-@using Blazored.LocalStorage
+@using Core.Modeller
 @using Genbrugsmarked.Service
-@using Genbrugsmarked.Logic
 
-@inject Blazored.LocalStorage.ILocalStorageService localStorage
 @inject NavigationManager navManager
-
-
-
-<PageTitle>Log Ind</PageTitle>
-
-<h3>Log Ind</h3>
-
+@inject ILoginService loginService
+@inject IUserSessionService userSessionService
 
 <div class="login-page-background">
     <div class="login-container">
-        
+
         <h3>Log ind</h3>
-        
-        
+
+        <!-- Formular til login-->
+        <EditForm Model="@loginModel" OnValidSubmit="OnClickLogin">
+
+            <div class="form-floating-group">
+                <InputText id="email" class="form-control" @bind-Value="loginModel.Email" placeholder="Email"/>
+                <label for="email">Email</label>
+            </div>
+
+            <div class="form-floating-group">
+                <InputText id="pwd"
+                           type="@PasswordType"
+                           class="form-control"
+                           @bind-Value="loginModel.Password"
+                           placeholder="Password"/>
+                <label for="pwd">Password</label>
+                <i class="bi bi-eye" @onclick="TogglePasswordVisibility">
+
+                </i>
+            </div>
+
+            <div style="text-align: center">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </EditForm>
+
+        @if (!string.IsNullOrEmpty(errorText))
+        {
+            <div class="error-message">
+                <span class="error-icon">⚠️</span>
+                <span class="error-text">@errorText</span>
+            </div>
+        }
     </div>
 </div>
 
-
-
 @code {
+    UserLogin loginModel = new();
     
+    string errorText = "";
+   
+    bool visPassword = false;
+
+    string PasswordType => visPassword ? "text" : "password";
+
+    
+    void TogglePasswordVisibility()
+    {
+        visPassword = !visPassword;
+    }
+
+    private async Task OnClickLogin()
+    {
+        errorText = string.Empty;
+
+        var user = await loginService.Login(loginModel);
+
+        if (user == null)
+        {
+            errorText = "Wrong email or password - try again...";
+        }
+        else
+        {
+            await userSessionService.SetUserAsync(user);
+            navManager.NavigateTo("/", forceLoad: true);
+        }
+    }
 }
+

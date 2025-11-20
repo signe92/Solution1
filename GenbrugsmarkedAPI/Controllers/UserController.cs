@@ -21,7 +21,7 @@ public class UserController : ControllerBase
         return userRepo.GetAll();
     }
 
-    [HttpGet]
+    [HttpGet("{id:int}")]
     public ActionResult<User> GetById(int id)
     {
         var user = userRepo.GetUserById(id);

@@ -16,6 +16,8 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 // brug af local storage
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddScoped<IAnnonceService, AnnonceService>();
+builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<IUserSessionService, UserSessionService>();
 
 
 

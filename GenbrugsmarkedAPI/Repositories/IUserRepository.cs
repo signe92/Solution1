@@ -7,9 +7,6 @@ namespace GenbrugsmarkedAPI.Repositories
 {
     public interface IUserRepository
     {
-        List<User> GetAll();
-        
-        
         User? GetUserById(int id);
 
         Task<User?> Login(string email, string password);

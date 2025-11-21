@@ -21,14 +21,12 @@
 
             <div class="form-floating-group">
                 <InputText id="pwd"
-                           type="@PasswordType"
+                           type="password"
                            class="form-control"
                            @bind-Value="loginModel.Password"
                            placeholder="Password"/>
                 <label for="pwd">Password</label>
-                <i class="bi bi-eye" @onclick="TogglePasswordVisibility">
-
-                </i>
+                
             </div>
 
             <div style="text-align: center">
@@ -39,7 +37,6 @@
         @if (!string.IsNullOrEmpty(errorText))
         {
             <div class="error-message">
-                <span class="error-icon">⚠️</span>
                 <span class="error-text">@errorText</span>
             </div>
         }
@@ -50,16 +47,6 @@
     UserLogin loginModel = new();
     
     string errorText = "";
-   
-    bool visPassword = false;
-
-    string PasswordType => visPassword ? "text" : "password";
-
-    
-    void TogglePasswordVisibility()
-    {
-        visPassword = !visPassword;
-    }
 
     private async Task OnClickLogin()
     {
@@ -69,7 +56,7 @@
 
         if (user == null)
         {
-            errorText = "Wrong email or password - try again...";
+            errorText = "Forkert email eller password";
         }
         else
         {

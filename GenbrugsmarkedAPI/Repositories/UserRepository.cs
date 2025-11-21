@@ -31,11 +31,6 @@ public class UserRepository : IUserRepository
         userCollection = client.GetDatabase(dbName).GetCollection<User>(collectionName);
     }
     
-    public List<User> GetAll()
-    {
-        return userCollection.Find(FilterDefinition<User>.Empty).ToList();
-    }
-    
     public User? GetUserById(int id)
     {
         return userCollection.Find(u => u.UserID == id).FirstOrDefault();

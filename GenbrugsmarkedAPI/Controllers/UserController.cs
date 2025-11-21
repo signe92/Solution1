@@ -15,13 +15,7 @@ public class UserController : ControllerBase
         this.userRepo = userRepo;
     }
 
-    [HttpGet]
-    public ActionResult<List<User>> GetAll()
-    {
-        return userRepo.GetAll();
-    }
-
-    [HttpGet("{id:int}")]
+    [HttpGet("{id}")]
     public ActionResult<User> GetById(int id)
     {
         var user = userRepo.GetUserById(id);
@@ -36,10 +30,9 @@ public class UserController : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login(UserLogin login)
     {
-
         var user = await userRepo.Login(login.Email, login.Password);
 
-        if (user == null || user.Password != login.Password)
+        if (user == null)
         {
             return Unauthorized();
         }
